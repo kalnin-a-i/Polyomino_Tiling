@@ -1,5 +1,3 @@
-from visual import visualize
-
 def solve(X, Y, total, types, numbers, solution=[]):
     if not X or total == len(solution):
         yield list(solution)

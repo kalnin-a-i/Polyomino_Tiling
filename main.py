@@ -17,23 +17,16 @@ def main(input):
     polyominoes = create(input)
     placements = (create_covered(board_size(input), polyominoes))
     graph, graph_invert = create_graph(placements, board_size(input))
-    #print(placements)
 
     # Поиск решения
     types = create_types(input)
-    #print(types)
     numbers = create_numbers(input)
-    #print(numbers)
-
-    # Отладочные принты
-    #print(graph)
-    #print(graph_invert)
-
 
     solution = list(solve(graph, graph_invert, total_number(input), types, numbers))
 
-    # Визуализациия решений
-    #visualize(solution, placements, input[0])
+    # Визуализациия одного из решения, если они есть
+    if solution:
+        visualize(solution, placements, input[0])
 
     if solution:
         return(True)
@@ -42,6 +35,7 @@ def main(input):
 
 
 # Тесты
+# В inputs_true можно дописать тесты с результатом True
 inputs_true = [[(2, 3), [], [((2, 2), 1)]],
                [(2, 3), [((2, 2), 1), ((2, 1), 1)], []],
                [(2, 3), [], [((2, 2), 2)]],
@@ -55,6 +49,7 @@ for i in range(len(inputs_true)):
     else:
         print(f'FAIL {i+1}')
 
+# В inputs_false можно дописать тесты с результатом False
 inputs_false = [[(2, 3), [((2, 2), 2)], []],
                 [(2, 3), [((2, 2), 1)], [((2, 2), 1)]],
                 [(2, 3), [], [((4, 2), 1)]],
